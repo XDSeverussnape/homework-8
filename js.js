@@ -65,6 +65,7 @@ const pictures = [
 ];
 
 const ulItems = document.querySelector(".gallery");
+const ulItemsByHTML = document.getElementsByClassName("gallery__item");
 const liItem = document.querySelector("li");
 const exit = document.querySelector(".lightbox__button");
 const window = document.querySelector(".lightbox");
@@ -92,47 +93,13 @@ for (let i = 0; i < pictures.length; i++) {
 ulItems.addEventListener("click", e => {
   e.preventDefault();
   window.classList.add("is-open");
-  photo.src = e.target.dataset.source;
-  photo.alt = e.target.alt;
-  pictures.forEach(item => {
-    array.push(item.original);
+  Array.from(ulItemsByHTML).forEach(item => {
+    array.push(item.children[0].children[0]);
   });
-  const newArray = array.filter(function(ele) {
-    return ele != e.target.dataset.source;
-  });
-  //newArray.push(e.target.dataset.source);
-  document.body.addEventListener(
-    "keyup",
-    e => {
-      const key = e.keyCode;
 
-      if (key == 39) {
-        el++;
-        if (el > newArray.length - 1 || el < 0) {
-          el = 0;
-        }
-        photo.src = newArray[el];
-        console.log(photo.src);
-      }
-    },
-    false
-  );
-  document.body.addEventListener(
-    "keyup",
-    e => {
-      const key = e.keyCode;
-
-      if (key == 37) {
-        el--;
-        if (el > newArray.length || el < 0) {
-          el = newArray.length - 1;
-        }
-        photo.src = newArray[el];
-        console.log(photo.src);
-      }
-    },
-    false
-  );
+  el = array.findIndex(focus => focus === e.target);
+  photo.src = array[el].dataset.source;
+  photo.alt = array[el].alt;
 });
 
 exit.addEventListener("click", e => {
@@ -142,17 +109,59 @@ exit.addEventListener("click", e => {
   array.splice(0, array.length);
 });
 
-document.body.addEventListener(
-  "keyup",
-  e => {
-    const key = e.keyCode;
-
-    if (key == 27) {
-      window.classList.remove("is-open");
-      photo.src = "";
-      photo.alt = "";
-      array.splice(0, array.length);
+document
+  .querySelector(".lightbox__button_left")
+  .addEventListener("click", () => {
+    el--;
+    if (el > array.length || el < 0) {
+      el = array.length - 1;
     }
-  },
-  false
-);
+    photo.src = array[el].dataset.source;
+    photo.alt = array[el].alt;
+  });
+
+document
+  .querySelector(".lightbox__button_right")
+  .addEventListener("click", () => {
+    el++;
+    if (el > array.length - 1 || el < 0) {
+      el = 0;
+    }
+    photo.src = array[el].dataset.source;
+    photo.alt = array[el].alt;
+  });
+
+if (array !== []) {
+  document.body.addEventListener(
+    "keyup",
+    e => {
+      const key = e.keyCode;
+
+      if (key == 27) {
+        window.classList.remove("is-open");
+        photo.src = "";
+        photo.alt = "";
+        array.splice(0, array.length);
+      }
+
+      if (key == 37) {
+        el--;
+        if (el > array.length || el < 0) {
+          el = array.length - 1;
+        }
+        photo.src = array[el].dataset.source;
+        photo.alt = array[el].alt;
+      }
+
+      if (key == 39) {
+        el++;
+        if (el > array.length - 1 || el < 0) {
+          el = 0;
+        }
+        photo.src = array[el].dataset.source;
+        photo.alt = array[el].alt;
+      }
+    },
+    false
+  );
+}

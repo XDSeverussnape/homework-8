@@ -103,6 +103,8 @@ body {
   height: auto;
   max-height: 100vh;
   max-width: 100vw;
+  border: 8px solid #b3adad;
+  border-radius: 10px;
 }
 
 .lightbox.is-open .lightbox__content {
@@ -136,4 +138,143 @@ body {
 .lightbox__button:hover,
 .lightbox__button:focus {
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+.lightbox__button_conteiner {
+  position: absolute;
+  bottom: 68px;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 50px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 200ms ease-in-out;
+  outline: none;
+}
+
+.lightbox__button_right {
+  position: absolute;
+  top: 8px;
+  right: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 200ms ease-in-out;
+  outline: none;
+  background-image: url("./images/first_right.png");
+  background-position: center;
+  background-size: 60%;
+  background-repeat: no-repeat;
+}
+
+.lightbox__button_right:hover::before {
+  content: "";
+  color: #2faddf;
+  border: 2px;
+  border-color: #2faddf;
+  z-index: 10;
+}
+
+.lightbox__button_right::before {
+  content: "";
+  display: flex;
+  position: relative;
+  left: 8px;
+  width: 80px;
+  height: 40px;
+  background-image: url("./images/second_rihgt.png");
+  background-position: center;
+  background-size: 22px;
+  background-repeat: no-repeat;
+  z-index: -22;
+}
+
+.lightbox__button_right::after {
+  content: "";
+  display: flex;
+  position: relative;
+  width: 40px;
+  height: 20px;
+  left: -15px;
+  top: 0px;
+  background-image: url("./images/arrow_right.png");
+  background-position: center;
+  background-size: 16px;
+  background-repeat: no-repeat;
+  z-index: 11;
+}
+
+.lightbox__button_left {
+  position: absolute;
+  top: 8px;
+  left: -12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 200ms ease-in-out;
+  outline: none;
+  background-image: url("./images/first_left.png");
+  background-position: center;
+  background-size: 60%;
+  background-repeat: no-repeat;
+}
+
+.lightbox__button_left:hover::before {
+  content: "";
+  color: #2faddf;
+  border: 2px;
+  border-color: #2faddf;
+  z-index: 10;
+}
+
+.lightbox__button_left::before {
+  content: "";
+  display: flex;
+  position: relative;
+  left: 8px;
+  width: 80px;
+  height: 40px;
+  background-image: url("./images/second_left.png");
+  background-position: center;
+  background-size: 22px;
+  background-repeat: no-repeat;
+  z-index: -22;
+}
+
+.lightbox__button_left::after {
+  content: "";
+  display: flex;
+  position: relative;
+  width: 40px;
+  height: 20px;
+  left: -15px;
+  top: 0px;
+  background-image: url("./images/arrow_left.png");
+  background-position: center;
+  background-size: 16px;
+  background-repeat: no-repeat;
+  z-index: 11;
 }
