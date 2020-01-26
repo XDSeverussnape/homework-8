@@ -131,12 +131,11 @@ document
     photo.alt = array[el].alt;
   });
 
-if (array !== []) {
-  document.body.addEventListener(
-    "keyup",
-    e => {
-      const key = e.keyCode;
-
+document.body.addEventListener(
+  "keyup",
+  e => {
+    const key = e.keyCode;
+    if (array.length !== 0) {
       if (key == 27) {
         window.classList.remove("is-open");
         photo.src = "";
@@ -161,7 +160,7 @@ if (array !== []) {
         photo.src = array[el].dataset.source;
         photo.alt = array[el].alt;
       }
-    },
-    false
-  );
-}
+    }
+  },
+  false
+);
